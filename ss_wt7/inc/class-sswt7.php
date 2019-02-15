@@ -26,8 +26,10 @@ if ( ! class_exists( 'SSWT7' ) ) {
 			$this->register_public_hooks();
 			$this->register_admin_hooks();
 			$this->register_shortcode();
+			$this->load_users();
 			$this->load_templates();
 			$this->load_navwalker();
+			$this->load_functions();
 		}
 
 		function load_front_end_assets() {
@@ -50,12 +52,20 @@ if ( ! class_exists( 'SSWT7' ) ) {
 			SSWT7_Shortcode::Instance();
 		}
 
+		function load_users() {
+			require get_template_directory() . '/inc/class-sswt7-users.php';
+		}
+
 		function load_templates() {
 			require get_template_directory() . '/inc/class-sswt7-template.php';
 		}
 
 		function load_navwalker() {
 			require get_template_directory() . '/inc/class-sswt7-navwalker.php';
+		}
+
+		function load_functions() {
+			require get_template_directory() . '/inc/sswt7-func.php';
 		}
 	}
 }
