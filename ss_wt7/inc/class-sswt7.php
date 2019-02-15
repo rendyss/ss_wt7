@@ -25,6 +25,7 @@ if ( ! class_exists( 'SSWT7' ) ) {
 			$this->load_front_end_assets();
 			$this->register_public_hooks();
 			$this->register_admin_hooks();
+			$this->register_shortcode();
 			$this->load_templates();
 			$this->load_navwalker();
 		}
@@ -42,6 +43,11 @@ if ( ! class_exists( 'SSWT7' ) ) {
 		function register_admin_hooks() {
 			require get_template_directory() . '/inc/class-sswt7-admin-hooks.php';
 			SSWT7_Admin_Hooks::Instance();
+		}
+
+		function register_shortcode() {
+			require get_template_directory() . '/inc/class-sswt7-shortcodes.php';
+			SSWT7_Shortcode::Instance();
 		}
 
 		function load_templates() {

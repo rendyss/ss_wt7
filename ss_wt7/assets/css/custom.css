@@ -226,3 +226,24 @@ p.info {
     font-size: 100px;
     font-weight: bold;
 }
+
+.user_list {
+    margin: auto;
+}
+
+.user_list img {
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.user_list .uname {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user_list .urole {
+    font-size: 16px;
+    display: block;
+    color: #888;
+}
