@@ -34,7 +34,9 @@ if ( ! class_exists( 'SSWT7_Users' ) ) {
 			if ( ! empty( $qStaffManager->get_results() ) ) {
 
 				if ( $html ) { //if result is html
-					$result = "<div class=\"row\">";
+					$wrap_class = $single_role ? $role : "staff_manager";
+					$result     = "<div class=\"uitems $wrap_class\" data-cat=\"$wrap_class\">";
+					$result     .= "<div class=\"row\">";
 					foreach ( $staff_manager as $user ) {
 						$result .= $ssWT7template->render( 'user-list', array(
 							'uname'   => $user->display_name,
@@ -43,8 +45,8 @@ if ( ! class_exists( 'SSWT7_Users' ) ) {
 						) );
 					}
 					$result .= "</div>";
-
 					$result .= $pagination ? custom_pagination( $paged, $total_pages ) : '';
+					$result .= "</div>";
 				} else {
 					foreach ( $staff_manager as $user ) {
 						$result['items'][] = $ssWT7template->render( 'user-list', array(
@@ -69,7 +71,7 @@ if ( ! class_exists( 'SSWT7_Users' ) ) {
 			return $this->get_users( 'manager', true, $paged, $html );
 		}
 
-		function get_staff_manager( $paged = 1, $html = true ) {
+		function get_staffs_managers( $paged = 1, $html = true ) {
 			return $this->get_users( array( 'staff', 'manager' ), false, $paged, $html );
 		}
 	}

@@ -58,6 +58,7 @@ if ( ! class_exists( 'SSWT7_Front_Assets' ) ) {
 			//include custom assets
 			wp_enqueue_style( 'custom.css', $path . '/assets/css/custom.css' );
 			wp_enqueue_script( 'custom.js', $path . '/assets/js/custom.js', array( 'jquery' ), false, true );
+			wp_localize_script( 'custom.js', 'objjs', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		}
 	}
 }

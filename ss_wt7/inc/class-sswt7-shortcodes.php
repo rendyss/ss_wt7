@@ -33,7 +33,7 @@ if ( ! class_exists( 'SSWT7_Shortcode' ) ) {
 
 		function list_staff_and_manager() {
 			$ssWT7Users = new SSWT7_Users();
-			return $ssWT7Users->get_staff_manager();
+			return $ssWT7Users->get_staffs_managers();
 		}
 
 		function list_staff() {

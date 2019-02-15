@@ -26,25 +26,35 @@ if ( ! defined( 'SSWT7_Ajax' ) ) {
 		}
 
 		private function register_ajax() {
-			add_action( 'wp_ajax_staffs', array( $this, 'staffs_callback' ) );
-			add_action( 'wp_ajax_nopriv_staffs', array( $this, 'staffs_callback' ) );
+			add_action( 'wp_ajax_staff', array( $this, 'staff_callback' ) );
+			add_action( 'wp_ajax_nopriv_staff', array( $this, 'staff_callback' ) );
 
-			add_action( 'wp_ajax_managers', array( $this, 'managers_callback' ) );
-			add_action( 'wp_ajax_nopriv_managers', array( $this, 'managers_callback' ) );
+			add_action( 'wp_ajax_manager', array( $this, 'manager_callback' ) );
+			add_action( 'wp_ajax_nopriv_manager', array( $this, 'manager_callback' ) );
+
+			add_action( 'wp_ajax_staff_manager', array( $this, 'staff_manager_callback' ) );
+			add_action( 'wp_ajax_nopriv_staff_manager', array( $this, 'staff_manager_callback' ) );
 
 		}
 
-		function staffs_callback() {
+		function staff_callback() {
 			$paged      = ! empty( $_GET['p'] ) ? $_GET['p'] : 1;
 			$sswt7Users = new SSWT7_Users();
 			$results    = $sswt7Users->get_staffs( $paged, false );
 			wp_send_json( $results );
 		}
 
-		function managers_callback() {
+		function manager_callback() {
 			$paged      = ! empty( $_GET['p'] ) ? $_GET['p'] : 1;
 			$sswt7Users = new SSWT7_Users();
 			$results    = $sswt7Users->get_managers( $paged, false );
+			wp_send_json( $results );
+		}
+
+		function staff_manager_callback() {
+			$paged      = ! empty( $_GET['p'] ) ? $_GET['p'] : 1;
+			$sswt7Users = new SSWT7_Users();
+			$results    = $sswt7Users->get_staffs_managers( $paged, false );
 			wp_send_json( $results );
 		}
 	}
