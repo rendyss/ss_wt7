@@ -1,13 +1,13 @@
 <?php
 
 /* Check if Class Exists. */
-if ( ! class_exists( 'SSWT4_Navwalker' ) ) {
+if ( ! class_exists( 'SSWT7_Navwalker' ) ) {
 	/**
 	 * WP_Bootstrap_Navwalker class.
 	 *
 	 * @extends Walker_Nav_Menu
 	 */
-	class SSWT4_Navwalker extends Walker_Nav_Menu {
+	class SSWT7_Navwalker extends Walker_Nav_Menu {
 
 		/**
 		 * Starts the list before the elements are added.

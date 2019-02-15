@@ -10,14 +10,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'SSWT4_Admin_Hooks' ) ) {
-	class SSWT4_Admin_Hooks {
-		function __construct() {
+if ( ! class_exists( 'SSWT7_Admin_Hooks' ) ) {
+	class SSWT7_Admin_Hooks {
+		public static function Instance() {
+			static $instance = null;
+			if ( $instance === null ) {
+				$instance = new self();
+			}
+
+			return $instance;
+		}
+
+		private function __construct() {
 			$this->register_sidebar();
 			$this->register_menu_nav();
 		}
 
-		function register_sidebar() {
+		private function register_sidebar() {
 			register_sidebar( array(
 				'name'          => 'Right sidebar',
 				'id'            => 'right_1',
@@ -28,7 +37,7 @@ if ( ! class_exists( 'SSWT4_Admin_Hooks' ) ) {
 			) );
 		}
 
-		function register_menu_nav() {
+		private function register_menu_nav() {
 			register_nav_menus( array(
 				'main_menu'   => 'Main Menu',
 				'footer_menu' => 'Footer Menu',

@@ -1,9 +1,8 @@
 <?php get_header(); ?>
 
 <?php
-global $ssWT4template;
+global $ssWT7template;
 
-echo $ssWT4template->render( 'front-masthead' );
-echo $ssWT4template->render( 'front-team' );
-?>
+echo $ssWT7template->render( 'front-masthead' ); ?>
+
 <?php get_footer();

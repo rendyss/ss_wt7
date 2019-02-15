@@ -6,7 +6,7 @@
  * Time: 8:48 AM
  */
 
-global $ssWT4template;
+global $ssWT7template;
 
 get_header();
 
@@ -19,7 +19,7 @@ while ( have_posts() ) : the_post(); ?>
                 <div class="row">
                     <div class="col-sm-8">
 						<?php } ?>
-						<?php echo $ssWT4template->render( "single" ); ?>
+						<?php echo $ssWT7template->render( "single" ); ?>
 						<?php if ( is_active_sidebar( 'right_1' ) ) { ?>
                     </div>
                     <div class="col-sm-4">

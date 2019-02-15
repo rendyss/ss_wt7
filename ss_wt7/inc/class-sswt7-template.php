@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'SSWT4_Template' ) ) {
-	class SSWT4_Template {
+if ( ! class_exists( 'SSWT7_Template' ) ) {
+	class SSWT7_Template {
 		/**
 		 * Location of expected template
 		 *

@@ -10,6 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $ssWT4template;
+global $ssWT7template;
 
-echo $ssWT4template->render( 'footer' );
+echo $ssWT7template->render( 'footer' );

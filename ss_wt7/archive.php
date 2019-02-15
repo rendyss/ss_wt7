@@ -6,7 +6,7 @@
  * Time: 8:49 AM
  */
 
-global $ssWT4template;
+global $ssWT7template;
 
 get_header(); ?>
 
@@ -25,12 +25,12 @@ get_header(); ?>
 
 						<?php if ( have_posts() ) :
 							while ( have_posts() ) : the_post();
-								echo $ssWT4template->render( 'search-list', array(
+								echo $ssWT7template->render( 'search-list', array(
 									'post_type' => $post->post_type
 								) );
 							endwhile;
 						else:
-							echo $ssWT4template->render( 'search-not-found' );
+							echo $ssWT7template->render( 'search-not-found' );
 						endif; ?>
 						<?php if ( is_active_sidebar( 'right_1' ) ) { ?>
                     </div>

@@ -9,13 +9,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'SSWT4_Front_Assets' ) ) {
-	class SSWT4_Front_Assets {
-		function __construct() {
+if ( ! class_exists( 'SSWT7_Front_Assets' ) ) {
+	class SSWT7_Front_Assets {
+		public static function Instance() {
+			static $instance = null;
+			if ( $instance === null ) {
+				$instance = new self();
+			}
+
+			return $instance;
+		}
+
+		private function __construct() {
 			$this->load_global_assets();
 		}
 
-		function load_global_assets() {
+		private function load_global_assets() {
 			//These assets is globally used in front-end
 			add_action( 'wp_enqueue_scripts', array( $this, 'global_assets_callback' ) );
 		}
