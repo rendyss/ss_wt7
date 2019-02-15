@@ -12,9 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'SSWT7_Users' ) ) {
 	class SSWT7_Users {
-		private function get_users( $role, $single_role, $pagination = true ) {
+		private function get_users( $role, $single_role, $paged = 1, $html = true, $pagination = true ) {
 			global $ssWT7template;
-			$paged    = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 			$per_page = 2;
 			$querry   = array(
 				'number' => $per_page,
@@ -31,34 +30,47 @@ if ( ! class_exists( 'SSWT7_Users' ) ) {
 			$total_pages   = ceil( $qStaffManager->get_total() / $per_page );
 
 			$staff_manager = $qStaffManager->get_results();
-			$result_html   = '';
+			$result        = false;
 			if ( ! empty( $qStaffManager->get_results() ) ) {
-				$result_html .= "<div class=\"row\">";
-				foreach ( $staff_manager as $user ) {
-					$result_html .= $ssWT7template->render( 'user-list', array(
-						'uname'   => $user->display_name,
-						'uavatar' => get_avatar_url( $user->ID ),
-						'urole'   => $user->roles ? $user->roles[0] : ''
-					) );
-				}
-				$result_html .= "</div>";
 
-				$result_html .= $pagination ? custom_pagination( $paged, $total_pages ) : '';
+				if ( $html ) { //if result is html
+					$result = "<div class=\"row\">";
+					foreach ( $staff_manager as $user ) {
+						$result .= $ssWT7template->render( 'user-list', array(
+							'uname'   => $user->display_name,
+							'uavatar' => get_avatar_url( $user->ID ),
+							'urole'   => $user->roles ? $user->roles[0] : ''
+						) );
+					}
+					$result .= "</div>";
+
+					$result .= $pagination ? custom_pagination( $paged, $total_pages ) : '';
+				} else {
+					foreach ( $staff_manager as $user ) {
+						$result['items'][] = $ssWT7template->render( 'user-list', array(
+							'uname'   => $user->display_name,
+							'uavatar' => get_avatar_url( $user->ID ),
+							'urole'   => $user->roles ? $user->roles[0] : ''
+						) );
+					}
+
+					$result['pagination'] = $pagination ? custom_pagination( $paged, $total_pages ) : '';
+				}
 			}
 
-			return $result_html;
+			return $result;
 		}
 
-		function get_staffs() {
-			return $this->get_users( 'staff', true );
+		function get_staffs( $paged = 1, $html = true ) {
+			return $this->get_users( 'staff', true, $paged, $html );
 		}
 
-		function get_managers() {
-			return $this->get_users( 'manager', true );
+		function get_managers( $paged = 1, $html = true ) {
+			return $this->get_users( 'manager', true, $paged, $html );
 		}
 
-		function get_staff_manager() {
-			return $this->get_users( array( 'staff', 'manager' ), false );
+		function get_staff_manager( $paged = 1, $html = true ) {
+			return $this->get_users( array( 'staff', 'manager' ), false, $paged, $html );
 		}
 	}
 }
